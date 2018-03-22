@@ -2,9 +2,14 @@
 echo shell-{tipps,magic}
 ```
 
+# touch
+```
+touch foo.txt # creates file or updates access and modification time
+```
+
 # screen
 ```
-screen ./long_running_script.sh
+screen -S long ./long_running_script.sh
 ```
 ctrl+a ctrl+d # detach
 screen -r [name] # reattach
@@ -12,7 +17,9 @@ screen -ls # list screen sessions
 
 # jq
 ```
-jq . data.json
+jq . example.json # pretty print
+jq '.Inhaber | { Name, Vorname }' example.json
+jq '{ "cardnumber": .Nummer, "issuer": .Herausgeber, "name": .Inhaber.Name, "lastname": .Inhaber.Name }' example.json
 ```
 
 # sort && uniq && wc
@@ -66,6 +73,9 @@ programm 2>&1
 
 # write files with echo
 ```
+echo '#!/bin/sh' > script.sh
+echo 'echo "Hello World"' >> script.sh
+chmod +x script.sh && ./script.sh
 ```
 
 # find
@@ -74,10 +84,13 @@ programm 2>&1
 
 # man/tldr
 ```
+man find
+tldr find
 ```
 
 # grep
 ```
+grep ':' example.json
 ```
 
 # curl && httpie
