@@ -41,12 +41,44 @@ convert foo.png foo.jpg
 convert old.png new.png  +append compare.png
 ```
 
-# ssh{,-config} && sshuttle && mosh
+# ssh{,-config}
+```
+ssh -p 2222 a128707@192.168.2.123
 ```
 ```
+# only use specified keys
+IdentitiesOnly yes
+
+# use sockets
+Host *
+     ControlMaster auto
+     ControlPath ~/.ssh/socket-%r@%h:%p
+
+# config our server
+Host braindump-server
+     Hostname 192.168.2.123
+     User a128707
+     Port 2222
+     IdentityFile ~/.ssh/arconsis
+```
+
+# mosh -> MObile SHell
+- handels bad connections
+- resumes shell-sessions, even in different networks
+- shows typed characters without delay
+
+# sshuttle
+- can be used kind of like a VPN
+- uses ssh-portforwarding
+- only needs permissions to execute python on target system
+
 
 # jobs (ctrl+z,&,fg)
 ```
+./long_running_script.sh
+<ctrl+z>
+jobs
+fg %1
 ```
 
 # redirect outputs
@@ -80,6 +112,7 @@ chmod +x script.sh && ./script.sh
 
 # find
 ```
+find . -name "*.jpg"
 ```
 
 # man/tldr
@@ -93,10 +126,25 @@ tldr find
 grep ':' example.json
 ```
 
-# curl && httpie
-```
-```
-
 # netcat && socat
 ```
+nc -l -p 8000 # listen on (tcp) port 8000
 ```
+
+# curl && httpie
+https://github.com/jakubroztocil/httpie
+```
+curl -s -H "Content-Type: application/json" \
+	-XPOST http://localhost:8000 \
+	-H 'Header: Value'
+	--data '{"username":"YOUR.USERNAME","password":"YOUR.PASSWORD"}'
+
+http POST :8000 \
+	'Header: Value' \
+	'username=YOUR.USERNAME' \
+	'password=YOUR.PASSWORD'
+```
+Different Separators -> Different Type
+- : HTTP Headers
+- == URL-Parameters
+- = JSON or Form-Data fields
