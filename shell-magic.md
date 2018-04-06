@@ -45,6 +45,7 @@ convert old.png new.png  +append compare.png
 ```
 ssh -p 2222 a128707@192.168.2.123
 ```
+
 ```
 # only use specified keys
 IdentitiesOnly yes
@@ -113,6 +114,11 @@ chmod +x script.sh && ./script.sh
 # find
 ```
 find . -name "*.jpg"
+find . -mtime -5m # find files modified in the last 5 minutes
+find . -ctime -1d # find files created in the last day
+find . -atime +7d # find files last accessed more than a week ago
+
+find ./src/ -name "*.java" -exec wc -l {} \; | sort # find all java-files, count number of lines and sort the result
 ```
 
 # man/tldr
