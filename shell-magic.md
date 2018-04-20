@@ -16,6 +16,16 @@ screen -S long ./long_running_script.sh
 - screen -r [name] # reattach
 - screen -ls # list screen sessions
 
+# tmux
+```shell
+tmux new-session -s name  # create a new session with the identifier - here 'name'
+tmux ls # list all active sessions
+tmux attach -t name # attach to an active session identified by its 'name'
+# detach from a session using [CTRL + B] + [D]
+# create a new window inside the current session [CTRL + B] + [C]
+tmux kill-server # kill the tmux server & all client instances
+```
+
 # jq
 ```shell
 jq . example.json # pretty print
