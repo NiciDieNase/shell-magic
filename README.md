@@ -179,6 +179,3 @@ Different Separators -> Different Type
 alias # prints all defined aliases
 alias foo="ls -l" # defines an alias (only for current shell)
 ```
-
-# tmux
-TODO
