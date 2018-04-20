@@ -1,14 +1,12 @@
-```
-echo shell-{tipps,magic}
-```
+Shell-Magic für Anfänger
 
 # touch
-```
+```shell
 touch foo.txt # creates file or updates access and modification time
 ```
 
 # screen
-```
+```shell
 screen -S long ./long_running_script.sh
 ```
 ctrl+a ctrl+d # detach
@@ -16,14 +14,14 @@ screen -r [name] # reattach
 screen -ls # list screen sessions
 
 # jq
-```
+```shell
 jq . example.json # pretty print
 jq '.Inhaber | { Name, Vorname }' example.json
 jq '{ "cardnumber": .Nummer, "issuer": .Herausgeber, "name": .Inhaber.Name, "lastname": .Inhaber.Name }' example.json
 ```
 
 # sort && uniq && wc
-```
+```shell
 echo "foo\nbar\nbar\nbaz\nbar"
 echo "foo\nbar\nbar\nbaz\nbar" | sort
 echo "foo\nbar\nbar\nbaz\nbar" | sort | uniq -c
@@ -31,22 +29,24 @@ echo "foo\nbar\nbar\nbaz\nbar" | wc -l
 ```
 
 # for && while
-```
+```shell
 for f in *.JPG; do mv $f ${f/.JPG/.jpg}; done
 ```
 
 # convert
-```
+convert images
+
+```shell
 convert foo.png foo.jpg
 convert old.png new.png  +append compare.png
 ```
 
 # ssh{,-config}
-```
+```shell
 ssh -p 2222 a128707@192.168.2.123
 ```
 
-```
+```shell
 # only use specified keys
 IdentitiesOnly yes
 
@@ -63,19 +63,20 @@ Host braindump-server
      IdentityFile ~/.ssh/arconsis
 ```
 
-# mosh -> MObile SHell
+## mosh -> MObile SHell
 - handels bad connections
 - resumes shell-sessions, even in different networks
 - shows typed characters without delay
 
-# sshuttle
+## sshuttle
 - can be used kind of like a VPN
 - uses ssh-portforwarding
+- only forwards TCP-Traffic
 - only needs permissions to execute python on target system
 
 
 # jobs (ctrl+z,&,fg)
-```
+```shell
 ./long_running_script.sh
 <ctrl+z>
 jobs
@@ -83,36 +84,36 @@ fg %1
 ```
 
 # redirect outputs
-## stdout -> Datei umleiten
-```
+### stdout -> Datei
+```shell
 programm > Datei.txt
 ```
-## stderr -> Datei umleiten
-```
+### stderr -> Datei
+```shell
 programm 2> Datei.txt
 ```
-## stdout UND stderr -> Datei umleiten
-```
+### stdout UND stderr -> Datei
+```shell
 programm &> Datei.txt
 ```
-## stdout -> stderr
-```
+### stdout -> stderr
+```shell
 programm 1>&2
 ```
-## stderr -> stdout
-```
+### stderr -> stdout
+```shell
 programm 2>&1
 ```
 
 # write files with echo
-```
+```shell
 echo '#!/bin/sh' > script.sh
 echo 'echo "Hello World"' >> script.sh
 chmod +x script.sh && ./script.sh
 ```
 
 # find
-```
+```shell
 find . -name "*.jpg"
 find . -mtime -5m # find files modified in the last 5 minutes
 find . -ctime -1d # find files created in the last day
@@ -122,24 +123,27 @@ find ./src/ -name "*.java" -exec wc -l {} \; | sort # find all java-files, count
 ```
 
 # man/tldr
-```
+https://tldr.sh/
+
+```shell
 man find
 tldr find
 ```
 
 # grep
-```
-grep ':' example.json
+```shell
+grep -E '([[:digit:]]{4}-){3}[[:digit:]]{4}' example.json
 ```
 
 # netcat && socat
-```
+```shell
 nc -l -p 8000 # listen on (tcp) port 8000
 ```
 
 # curl && httpie
 https://github.com/jakubroztocil/httpie
-```
+
+```shell
 curl -s -H "Content-Type: application/json" \
 	-XPOST http://localhost:8000 \
 	-H 'Header: Value'
