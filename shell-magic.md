@@ -3,15 +3,18 @@ Shell-Magic für Anfänger
 # touch
 ```shell
 touch foo.txt # creates file or updates access and modification time
+touch foo{1..10}.JPG
 ```
+- mit -r kann ein anderes File referenziert werden, um dessen Zeiten zu verwenden, statt der aktuellen
+- mit -d kann die Zeit direkt angegeben werden
 
 # screen
 ```shell
 screen -S long ./long_running_script.sh
 ```
-ctrl+a ctrl+d # detach
-screen -r [name] # reattach
-screen -ls # list screen sessions
+- ctrl+a ctrl+d # detach
+- screen -r [name] # reattach
+- screen -ls # list screen sessions
 
 # jq
 ```shell
@@ -115,12 +118,14 @@ chmod +x script.sh && ./script.sh
 # find
 ```shell
 find . -name "*.jpg"
-find . -mtime -5m # find files modified in the last 5 minutes
-find . -ctime -1d # find files created in the last day
-find . -atime +7d # find files last accessed more than a week ago
+find . -mmin -5 # find files modified in the last 5 minutes
+find . -ctime -1 # find files created in the last day
+find . -atime +7 # find files last accessed more than a week ago
 
 find ./src/ -name "*.java" -exec wc -l {} \; | sort # find all java-files, count number of lines and sort the result
 ```
+- {+,-}{a,c,m}min für Zeit in Minuten
+- {+,-}{a,c,m}time für Zeit in Tagen
 
 # man/tldr
 https://tldr.sh/
@@ -158,3 +163,12 @@ Different Separators -> Different Type
 - : HTTP Headers
 - == URL-Parameters
 - = JSON or Form-Data fields
+
+# alias
+```shell
+alias # prints all defined aliases
+alias foo="ls -l" # defines an alias (only for current shell)
+```
+
+# tmux
+TODO
