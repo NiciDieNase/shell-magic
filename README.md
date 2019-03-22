@@ -134,7 +134,7 @@ find . -atime +7 # find files last accessed more than a week ago
 
 find ./src/ -name "*.java" -exec wc -l {} \; | sort # find all java-files, count number of lines and sort the result
 ```
-- {+,-}{a,c,m}min für Zeit in Minuten
+- {+,-}{a,c,m}min für Zeit in Minuten (access, create, modified)
 - {+,-}{a,c,m}time für Zeit in Tagen
 
 # man/tldr
